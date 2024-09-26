@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      
+    <h:head>
+        <title>Ghostnets</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </h:head>
+    
+    <h:body>
+    <!-- Navigation Bar -->
+        <div class="navbar">
+            <a href="index.xhtml"> 
+            	<i class="pi pi-home"></i> Home</a>
+            <a href="netzmeldung.xhtml">
+            	<i class="pi pi-search-plus"></i> Geisternetz melden</a>
+            <a href="datenbank.xhtml">
+            	<i class="pi pi-flag"></i> Bergungsstatus</a>
+            <a href="unterstuetzer.xhtml">
+            	<i class="pi pi-heart-fill"></i> Gemeinsam helfen</a>
+        </div>
+
+    <!-- Hauptinhalt -->
+        <div class="content">
+            <p:panel header="Geisternetze bergen und die Ozeane schützen" styleClass="custom-panel">
+                
+                <h1 class="center-align-h1">Beteilige Dich am Schutz unserer Ozeane!</h1> 
+                
+                <h:outputText value="Nutze die folgende Tabelle, um Geisternetze zu bergen oder als verschollen zu melden. Deine Unterstützung ist entscheidend für den Schutz der Meeresbewohner." styleClass="text-left" />
+                
+                <br></br>
+                
+				<h:form>
+				    <p:dataTable id="netzTable" value="#{netzDatenbankController.netzliste}" var="netz" 
+				                 paginator="true" rows="20" emptyMessage="Keine Netze gefunden" 
+				                 filterEvent="keyup" style="margin-top:20px">
+				
+				        <p:column headerText="ID" filterBy="#{netz.id}" filterMatchMode="contains">
+				            <h:outputText value="#{netz.id}" />
+				        </p:column>
+				
+				        <p:column headerText="Längengrad" filterBy="#{netz.laengengrad}" filterMatchMode="contains" filterPlaceholder="Längengrad filtern">
+				            <h:outputText value="#{netz.laengengrad}" />
+				        </p:column>
+				
+				        <p:column headerText="Breitengrad" filterBy="#{netz.breitengrad}" filterMatchMode="contains" filterPlaceholder="Breitengrad filtern">
+				            <h:outputText value="#{netz.breitengrad}" />
+				        </p:column>
+
+				        <p:column headerText="Status" filterBy="#{netz.status}" filterMatchMode="contains" filterPlaceholder="Status filtern">
+				            <h:outputText value="#{netz.status}" />
+				        </p:column>
+				        
+				        <p:column headerText="Möchtest Du ein Geisternetz bergen?">
+				            <h:form>
+				                <p:commandButton 	value="Netz bergen" 
+                 									action="#{netz_Controller.netzBergenFormular(netz.id, netz.durchmesser, netz.laengengrad, netz.breitengrad)}"
+									                style="background-color: var(--yellow-500); border: none; color: black; cursor: pointer; padding: 2px 15px; text-decoration: none;"
+									                process="@this" />
+				            </h:form>
+				        </p:column>
+				
+				        <p:column headerText="Möchtest Du ein Geisternetz als verschollen melden?">
+				            <h:form>
+				                <p:commandButton 	value="Netz verschollen" 
+				                                 	action="#{netz_Controller.netzVerschollenFormular(netz.id, netz.durchmesser, netz.laengengrad, netz.breitengrad)}"
+				                                 	style="background-color: var(--yellow-500); border: none; color: black; cursor: pointer; padding: 2px 15px; text-decoration: none;"
+									             	process="@this" />
+				            </h:form>
+				        </p:column>
+				    </p:dataTable>
+				</h:form>
+            </p:panel>
+        </div>
+        
+        <div class="footer">
+            Kontakt | Datenschutz | Impressum
+        </div>
+        
+    </h:body>
+</html>

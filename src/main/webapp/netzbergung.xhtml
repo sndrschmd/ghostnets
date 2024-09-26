@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+	<h:head>
+	    <title>Ghostnets</title>
+	    <link rel="stylesheet" type="text/css" href="style.css" />
+	    <style>
+	        .form-container {
+	            display: grid;
+	            grid-template-columns: 1fr 1fr; 
+	            gap: 10px; 
+	        }
+	
+	        .form-group {
+	            display: flex;
+	            flex-direction: column;
+	            gap: 5px; 
+	        }
+	
+	        .form-item {
+	            display: flex;
+	            justify-content: space-between;
+	            gap: 10px;
+	        }
+	
+	        .button-container {
+	            display: flex;
+	            gap: 10px; 
+	            margin-top: 20px;
+	        }
+	        
+	        .ui-messages-info {
+	            background-color: var(--yellow-200); 
+	            color: black; 
+	            border-color: #FFD600; 
+	        }
+	        
+	    </style>
+	</h:head>
+	
+	<h:body>
+    <!-- Navigation Bar -->
+        <div class="navbar">
+            <a href="index.xhtml"> 
+            	<i class="pi pi-home"></i> Home</a>
+            <a href="netzmeldung.xhtml">
+            	<i class="pi pi-search-plus"></i> Geisternetz melden</a>
+            <a href="datenbank.xhtml">
+            	<i class="pi pi-flag"></i> Bergungsstatus</a>
+            <a href="unterstuetzer.xhtml">
+            	<i class="pi pi-heart-fill"></i> Gemeinsam helfen</a>
+        </div>
+
+    <!-- Hauptinhalt -->
+		<div class="content">
+		    <p:panel header="Geisternetze bergen und die Ozeane schützen" styleClass="custom-panel">
+		        <h1>Du möchtest ein Geisternetz bergen?</h1>  
+		
+		        <h:outputText value="Bitte füll das folgende Formular aus, um ein Geisternetz zu bergen. Felder, die mit einem Sternchen (*) markiert sind, sind Pflichtfelder." styleClass="text-left" />
+				
+				<br></br>
+		
+				<h:outputText value="Achtung: Personen, die ein Geisternetz bergen möchten, sind mit Name und Telefonnummer auf der Seite 'Gemeinsam helfen' sichtbar, bis der Status des Geisternetzes auf 'Geborgen' oder 'Verschollen' aktualisiert wurde.
+									Damit bieten wir anderen Helfer:innen die Chance, mit Dir in Kontakt zu treten, um sich abzustimmen und/oder Bergungen umzuverteilen." 
+		                      styleClass="text-left" style="color: red; font-style: italic;" />
+		        <br></br>
+		
+		        <h:form>
+		            <p:growl id="messages" showDetail="true" sticky="true"/>
+		            <div class="form-container">
+		                
+		                <div class="form-group">
+		                    <p:outputLabel class="p-outputLabel" value="ID: "/>
+		                    <p:outputLabel class="p-outputLabel" value="Durchmesser (ca.): "/>
+		                    <p:outputLabel class="p-outputLabel" value="Längengrad: "/>
+		                    <p:outputLabel class="p-outputLabel" value="Breitengrad: "/>
+		                    <p:outputLabel class="p-outputLabel" value="* Vorname: "/>
+		                    <p:outputLabel class="p-outputLabel" value="* Nachname: "/>
+		                    <p:outputLabel class="p-outputLabel" value="* Telefonnummer: "/>
+		                </div>
+		                
+		                <div class="form-group">
+		                
+		                	<p class="netz-info-item"><h:outputText value="#{netz_Controller.netzId}"/></p>
+		                	<p class="netz-info-item"><h:outputText value="#{netz_Controller.durchmesser}"/></p>
+		                	<p class="netz-info-item"><h:outputText value="#{netz_Controller.laengengrad}"/></p>
+		            		<p class="netz-info-item"><h:outputText value="#{netz_Controller.breitengrad}"/></p>
+		            		
+		                	
+		                    <p:inputText class="p-inputText" required="true" requiredMessage="Bitte Vorname eingeben"
+		                                 value="#{netz_Controller.vorname}"/>
+		                                 
+		                    <p:inputText class="p-inputText" required="true" requiredMessage="Bitte Nachname eingeben"
+		                                 value="#{netz_Controller.nachname}"/>
+		                                 
+		                    <p:inputMask class="p-inputNumber" required="true" requiredMessage="Bitte Telefonnummer eingeben"
+		                    			 mask="(+99) 99999999999"
+		                                 value="#{netz_Controller.telefonnummer}"/>
+		                                 
+		                </div>
+		            </div>
+		            
+		            <br></br>
+					
+					<h:outputText value="Vielen Dank! Deine Unterstützung trägt zum Schutz der Meere bei." styleClass="text-left" />
+					
+		            <br></br>
+		
+		            <div class="button-container">
+		                <p:commandButton value="Netz zur Bergung markieren" action="#{netz_Controller.netzBergungBevorstehend()}" update="messages" style="background-color: var(--yellow-500); border: none; color: black;"/>
+		                <p:commandButton type="reset" value="Reset" style="background-color: var(--yellow-500); border: none; color: black;"/>
+		            </div>
+		
+		            <br></br>
+		
+		        </h:form>
+		
+		    </p:panel>
+		</div>
+
+    <div class="footer">
+        Kontakt | Datenschutz | Impressum
+    </div>
+
+</h:body>
+</html>

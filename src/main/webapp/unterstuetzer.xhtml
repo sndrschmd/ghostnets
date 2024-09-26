@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      
+    <h:head>
+        <title>Ghostnets</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </h:head>
+    
+    <h:body>
+    <!-- Navigation Bar -->
+        <div class="navbar">
+            <a href="index.xhtml"> 
+            	<i class="pi pi-home"></i> Home</a>
+            <a href="netzmeldung.xhtml">
+            	<i class="pi pi-search-plus"></i> Geisternetz melden</a>
+            <a href="datenbank.xhtml">
+            	<i class="pi pi-flag"></i> Bergungsstatus</a>
+            <a href="unterstuetzer.xhtml">
+            	<i class="pi pi-heart-fill"></i> Gemeinsam helfen</a>
+        </div>
+
+    <!-- Hauptinhalt -->
+        <div class="content">
+            <p:panel header="Geisternetze bergen und die Ozeane schützen" styleClass="custom-panel">
+                
+                <!-- Zentrierte Überschrift -->
+                <h1 class="center-align-h1">Jetzt gemeinsam unterstützen!</h1> 
+                
+                <h:outputText value="In der folgenden Tabelle siehst Du, welche unserer Helfer:innen aktuell Geisternetze bergen. Tritt jetzt mit ihnen in Kontakt, um sich abzustimmen und/oder Bergungen umzuverteilen." styleClass="text-left" />
+                
+                <br></br>
+                
+                <h:outputText value="Vielen Dank für Deine Unterstützung!" styleClass="text-left" />
+                
+                <!-- Suchfeld -->
+				<h:form>
+					<p:dataTable id="netzTableBevorstehend" value="#{netzDatenbankController.netzeBergungBevorstehend}" var="netz" 
+					             paginator="true" rows="20" emptyMessage="Keine Geisternetze mit bevorstehender Bergung gefunden." 
+					             style="margin-top:20px">
+					    
+					    <p:column headerText="ID">
+					        <h:outputText value="#{netz.id}" />
+					    </p:column>
+					    
+					    <p:column headerText="Längengrad">
+					        <h:outputText value="#{netz.laengengrad}" />
+					    </p:column>
+					    
+					    <p:column headerText="Breitengrad">
+					        <h:outputText value="#{netz.breitengrad}" />
+					    </p:column>
+					
+					    <p:column headerText="Status">
+					        <h:outputText value="#{netz.status}" />
+					    </p:column>
+					
+					    <p:column headerText="Vorname">
+					        <h:outputText value="#{netz.bergendePerson.vorname}" />
+					    </p:column>
+					
+					    <p:column headerText="Nachname">
+					        <h:outputText value="#{netz.bergendePerson.nachname}" />
+					    </p:column>
+					
+					    <p:column headerText="Telefonnummer">
+					        <h:outputText value="#{netz.bergendePerson.telefonnummer}" />
+					    </p:column>
+					    
+					</p:dataTable>
+				</h:form>
+            </p:panel>
+        </div>
+        
+        <div class="footer">
+            Kontakt | Datenschutz | Impressum
+        </div>
+        
+    </h:body>
+</html>

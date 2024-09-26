@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+	<h:head>
+	    <title>Ghostnets</title>
+	    <link rel="stylesheet" type="text/css" href="style.css" />
+	    <style>
+	        .form-container {
+	            display: grid;
+	            grid-template-columns: 1fr 1fr; 
+	            gap: 10px;
+	        }
+	
+	        .form-group {
+	            display: flex;
+	            flex-direction: column;
+	            gap: 5px; 
+	        }
+	
+	        .form-item {
+	            display: flex;
+	            justify-content: space-between;
+	            gap: 10px;
+	        }
+	
+	        .button-container {
+	            display: flex;
+	            gap: 10px; 
+	            margin-top: 20px;
+	        }
+	        
+	        .ui-messages-info {
+	            background-color: var(--yellow-200); 
+	            color: black; 
+	            border-color: #FFD600; 
+	        }
+	        
+	    </style>
+	</h:head>
+	
+	<h:body>
+    	<!-- Navigation Bar -->
+        <div class="navbar">
+            <a href="index.xhtml"> 
+            	<i class="pi pi-home"></i> Home</a>
+            <a href="netzmeldung.xhtml">
+            	<i class="pi pi-search-plus"></i> Geisternetz melden</a>
+            <a href="datenbank.xhtml">
+            	<i class="pi pi-flag"></i> Bergungsstatus</a>
+            <a href="unterstuetzer.xhtml">
+            	<i class="pi pi-heart-fill"></i> Gemeinsam helfen</a>
+        </div>
+
+    <!-- Hauptinhalt -->
+    <div class="content">
+        <p:panel header="Geisternetze bergen und die Ozeane schützen" styleClass="custom-panel">
+            <h1 class="center-align-h1">Danke, dass du ein Geisternetz melden willst!</h1>  
+
+            <h:outputText value="Bitte füll das folgende Formular aus, um ein Geisternetz zu melden. Felder, die mit einem Sternchen (*) markiert sind, sind Pflichtfelder." styleClass="text-left" />
+
+            <br></br>
+
+            <h:form>
+                <p:growl id="messages" showDetail="true" sticky="true"/>
+                <div class="form-container">
+                
+                    <div class="form-group">
+                        <p:outputLabel class="p-outputLabel" value="Vorname: "/>
+                        <p:outputLabel class="p-outputLabel" value="Nachname: "/>
+                        <p:outputLabel class="p-outputLabel" value="Telefonnummer: "/>
+                        <p:outputLabel class="p-outputLabel" value="* Durchmesser (ca.): "/>
+                        <p:outputLabel class="p-outputLabel" value="* Breitengrad: "/>
+                        <p:outputLabel class="p-outputLabel" value="* Längengrad: "/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <p:inputText class="p-inputText" placeholder="optional"
+                                     value="#{netzmeldung_Controller.vorname}"/>
+                                     
+                        <p:inputText class="p-inputText" placeholder="optional"
+                                     value="#{netzmeldung_Controller.nachname}"/>
+                                     
+                        <p:inputMask class="p-inputNumber" mask="(+99) 99999999999" placeholder="optional"
+                                     value="#{netzmeldung_Controller.telefonnummer}"/>
+                                     
+                        <p:inputNumber class="p-inputNumber" minValue="0" symbolPosition="s" symbol="m"
+                                       decimalPlaces="0" required="true"
+                                       requiredMessage="Bitte Durchmesser eingeben"
+                                       value="#{netzmeldung_Controller.durchmesser}"/>
+                                       
+                        <p:inputNumber class="p-inputNumber" placeholder="00,000000" maxValue="90" minValue="-90"
+                                       decimalPlaces="6" padControl="true" required="true"
+                                       requiredMessage="Bitte Breitengrad eingeben"
+                                       value="#{netzmeldung_Controller.breitengrad}"/>
+                                       
+                        <p:inputNumber class="p-inputNumber" placeholder="00,000000" maxValue="180" minValue="-180"
+                                       decimalPlaces="6" padControl="true" required="true"
+                                       requiredMessage="Bitte Längengrad eingeben"
+                                       value="#{netzmeldung_Controller.laengengrad}"/>
+                    </div>
+                </div>
+
+                <br></br>
+
+                <div class="button-container">
+                    <p:commandButton value="Netz melden" action="#{netzmeldung_Controller.netzMelden()}" update="messages" style="background-color: var(--yellow-500); border: none; color: black;"/>
+                    <p:commandButton type="reset" value="Reset" style="background-color: var(--yellow-500); border: none; color: black;"/>
+                </div>
+
+                <br></br>
+
+            </h:form>
+
+        </p:panel>
+    </div>
+
+    <div class="footer">
+        Kontakt | Datenschutz | Impressum
+    </div>
+
+</h:body>
+</html>

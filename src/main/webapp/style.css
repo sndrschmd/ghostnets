@@ -1,0 +1,160 @@
+/* Allgemeine Styling-Regeln */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: var(--teal-50);
+}
+
+.navbar {
+    background-color: var(--teal-100);
+    border: 0.5px solid var(--teal-200);
+    padding: 10px 20px; 
+    display: flex;
+    justify-content: space-around; 
+    border-radius: 8px; 
+    margin: 10px; 
+}
+
+.navbar a {
+    color: var(--bluegray-900);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px; 
+    transition: background-color 0.3s; 
+}
+
+.navbar a:hover {
+    background-color: var(--teal-200); 
+    color: var(--bluegray-900); 
+}
+
+.custom-header .ui-panel-titlebar {
+    text-align: center; 
+}
+
+.center-align-h1 {
+    text-align: center; 
+    margin: 20px 0; 
+}
+
+.content {
+    padding: 20px;
+    text-align: left;
+}
+
+.custom-panel {
+    border-radius: 8px;
+    padding: 20px;
+    background-color: var(--teal-200);
+    box-shadow: 0px 4px 8px rgba(230, 255, 250, 0.5);
+    font-weight: normal;
+    text-align: left; 
+    max-width: 1400px;
+    margin: 0 auto; 
+}
+
+.form-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr; 
+	gap: 10px; 
+}
+	
+.form-group {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+		        
+.button-container {
+	display: flex;
+	gap: 10px; 
+	margin-top: 20px;
+}
+
+.label {
+    flex: 0 0 30%; 
+    text-align: left; 
+    margin-right: 10px; 
+}
+
+.form-group input,
+.form-group .p-inputNumber,
+.form-group .p-inputText {
+    flex: 1; 
+}  
+
+h1 {
+    color: var(--bluegray-900);
+    margin-bottom: 50px;
+}
+
+.text-left {
+    text-align: left;
+    display: block;
+}
+
+.subheading {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: var(--bluegray-900);
+}
+
+.command-button {
+    background-color: var(--teal-700);
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+
+.command-button:hover {
+    background-color: var(--teal-800); 
+}
+
+.ui-messages-info {
+    background-color: var(--yellow-200); 
+    color: black; 
+    border-color: #FFD600; 
+}
+
+.custom-button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: var(--yellow-500); 
+    color: black; 
+    text-align: center;
+    text-decoration: none; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+
+.custom-button:hover {
+    background-color: var(--yellow-700); 
+}
+
+.footer {
+    background-color: var(--teal-100); 
+    border: 0.5px solid var(--teal-200); 
+    padding: 10px 20px; 
+    display: flex; 
+    justify-content: center; 
+    border-radius: 8px; 
+    margin: 10px; 
+    color: var(--bluegray-900); 
+    font-size: 12px; 
+    text-align: center; 
+}
