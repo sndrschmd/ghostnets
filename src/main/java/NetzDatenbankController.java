@@ -15,7 +15,7 @@ public class NetzDatenbankController implements Serializable {
     private List<Geisternetz> netzliste; // Liste aller Geisternetze
     private List<Geisternetz> netzeBergungBevorstehend; // Gefilterte Liste für bevorstehende Bergungen
     
-    // Filterkriterien (optional, falls du serverseitige Filter anwenden möchtest)
+    // Filterkriterien
     private String filterLaengengrad;
     private String filterBreitengrad;
 
@@ -78,12 +78,10 @@ public class NetzDatenbankController implements Serializable {
 
     // Dummy-Aktionen für die CommandButtons
     public void netzBergenFormular(int id, double laengengrad, double breitengrad) {
-        // Implementiere hier deine Logik für das Bergen eines Netzes
         System.out.println("Netz bergen: ID = " + id + ", Längengrad = " + laengengrad + ", Breitengrad = " + breitengrad);
     }
 
     public void netzVerschollenFormular(int id, double laengengrad, double breitengrad) {
-        // Implementiere hier deine Logik für das Markieren eines Netzes als verschollen
         System.out.println("Netz verschollen: ID = " + id + ", Längengrad = " + laengengrad + ", Breitengrad = " + breitengrad);
     }
 }
